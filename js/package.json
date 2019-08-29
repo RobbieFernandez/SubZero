@@ -1,0 +1,15 @@
+{
+    "devDependencies": {
+        "@babel/preset-react": "^7.0.0",
+        "@babel/preset-env": "^7.5.5",
+        "@babel/core": "^7.5.5",
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0",
+        "webpack": "^4.39.3",
+        "webpack-cli": "^3.3.7",
+        "babel-loader": "^8.0.6"
+    },
+    "scripts": {
+        "start": "webpack-cli -c webpack.config.js"
+    }
+}

@@ -104,5 +104,6 @@ vp/
 # mypy
 .mypy_cache/
 
-# Node stuff
-node_modules/**
+# Javascript stuff
+js/node_modules
+js/dist
