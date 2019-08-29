@@ -25,7 +25,7 @@ SECRET_KEY = 'uz!&5eqw+8wtv*s=zhgf0vz9!4hukroz=!&6qamh19%v*%*q6w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -119,7 +119,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = ''
+
+STATICFILES_DIRS = [
+    os.path.join(os.path.dirname(__file__), '../js/dist')
+]
+
+STATIC_ROOT=os.path.join(os.path.dirname(__file__), '../static/dist')
+
 
 # IP address of the Icecast server
 ICECAST_BASE_URL = ''
