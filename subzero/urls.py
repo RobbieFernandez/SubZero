@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from subzero.views import stream
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('stream/<stream_name>', stream, name='stream')
 ]
