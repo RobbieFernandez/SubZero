@@ -1,5 +1,6 @@
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.jsx',
+    mode: 'development',
     module: {
       rules: [
         {
@@ -16,6 +17,7 @@ module.exports = {
       extensions: ['*', '.js', '.jsx']
     },
     output: {
+      library: 'subzero',
       path: __dirname + '/dist',
       publicPath: '/',
       filename: 'bundle.js'

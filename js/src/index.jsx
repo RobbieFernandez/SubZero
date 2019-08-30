@@ -1,0 +1,1 @@
+export {initStreamApp} from './StreamApp'

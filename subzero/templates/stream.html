@@ -1,10 +1,18 @@
 <html>
     <head>
         <title>Stream</title>
+        {% load static %}
+        <script src={% static "bundle.js" %}></script>
     </head>
     <body>
-        <audio controls>
-            <source src="{{stream_url}}" type="audio/mpeg">
-        </audio>
+        <div id="app-container"></div>
+        <script>
+            subzero.initStreamApp(
+                "{{stream_url}}",
+                500,
+                500,
+                "app-container"
+            )
+        </script>
     </body>
 </html>
