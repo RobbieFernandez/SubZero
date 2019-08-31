@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL = ''
 
 STATICFILES_DIRS = [
-    os.path.join(os.path.dirname(__file__), '../js/dist')
+    os.path.join(os.path.dirname(__file__), '../static/js/dist'),
 ]
 
 STATIC_ROOT=os.path.join(os.path.dirname(__file__), '../static/dist')
