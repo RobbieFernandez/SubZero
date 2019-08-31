@@ -10,6 +10,7 @@
         "babel-loader": "^8.0.6"
     },
     "scripts": {
-        "start": "webpack-cli -c webpack.config.js"
+        "start": "webpack-cli -c webpack.config.js",
+        "webpack-watch": "webpack-cli -wc webpack.config.js"
     }
 }
