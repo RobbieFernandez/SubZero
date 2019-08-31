@@ -26,7 +26,7 @@ export class AudioVisualiser extends React.Component {
     }
 
     initVisualisation() {
-        let context = new AudioContext();
+        let context = this.props.audioContext;
         let analyser = context.createAnalyser();
         let audio = this.refs.audio;
         let audioSrc = context.createMediaElementSource(audio);
@@ -37,8 +37,27 @@ export class AudioVisualiser extends React.Component {
         this.drawVisualiser(analyser)
     }
 
+    getCanvasHeight() {
+        return window.innerHeight / 2;
+    }
+
+    getCanvasWidth() {
+        return window.innerWidth;
+    }
+
+    resizeCanvas() {
+        let canvas = this.refs.visualiserCanvas;
+        canvas.width = this.getCanvasWidth();
+        canvas.height = this.getCanvasHeight();
+    }
+
     componentDidMount() {
-        this.initVisualisation()
+        this.initVisualisation();
+        window.addEventListener("resize", this.resizeCanvas.bind(this));
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.resizeCanvas.bind(this));
     }
 
     render() {
@@ -51,8 +70,9 @@ export class AudioVisualiser extends React.Component {
             ></audio>
             <canvas
                 ref={"visualiserCanvas"}
-                width={this.props.canvasWidth || 300}
-                height={this.props.canvasHeight || 300}
+                width={this.getCanvasWidth()}
+                height={this.getCanvasHeight()}
+                onResize={() => {console.log("Resize")}}
             ></canvas>
         </div>
     }
