@@ -55,7 +55,6 @@ class StreamApp extends React.Component {
 }
 
 export function initStreamApp(audioStreamUrl, containerId) {
-    console.log(document.getElementById(containerId))
     ReactDOM.render(
         <StreamApp
             audioStreamUrl={audioStreamUrl}
