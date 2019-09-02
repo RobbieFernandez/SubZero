@@ -37,9 +37,17 @@ class StreamApp extends React.Component {
     render() {
         return <div>
             <div className="playButtonContainer">
-                <button className="playButton" onClick={this.handlePlayClick.bind(this)}>
+                <i
+                    className={
+                        this.state.playing ?
+                            "fas playButton fa-pause-circle" :
+                            "fas playButton fa-play-circle"
+                    }
+                    onClick={this.handlePlayClick.bind(this)}>
+                </i>
+                {/* <button className="playButton" onClick={this.handlePlayClick.bind(this)}>
                     {this.state.playing? "Pause" : "Start"}
-                </button>
+                </button> */}
             </div>
             {this.state.started &&
                 <AudioVisualiser

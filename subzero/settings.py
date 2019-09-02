@@ -124,6 +124,7 @@ STATIC_URL = ''
 STATICFILES_DIRS = [
     os.path.join(os.path.dirname(__file__), '../static/js/dist'),
     os.path.join(os.path.dirname(__file__), '../static/css'),
+    os.path.join(os.path.dirname(__file__), '../static/js/node_modules/@fortawesome/'),
 ]
 
 STATIC_ROOT=os.path.join(os.path.dirname(__file__), '../static/dist')

@@ -7,7 +7,8 @@
         "react-dom": "^16.9.0",
         "webpack": "^4.39.3",
         "webpack-cli": "^3.3.7",
-        "babel-loader": "^8.0.6"
+        "babel-loader": "^8.0.6",
+        "@fortawesome/fontawesome-free": "^5.10.2"
     },
     "scripts": {
         "start": "webpack-cli -c webpack.config.js",

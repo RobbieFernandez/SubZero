@@ -13,6 +13,11 @@
     display: flex;
 }
 
+.playButton {
+    font-size: 10em;
+    color: #9933ff;
+}
+
 html {
     background-color: black;
 }
