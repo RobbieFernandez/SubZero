@@ -45,9 +45,6 @@ class StreamApp extends React.Component {
                     }
                     onClick={this.handlePlayClick.bind(this)}>
                 </i>
-                {/* <button className="playButton" onClick={this.handlePlayClick.bind(this)}>
-                    {this.state.playing? "Pause" : "Start"}
-                </button> */}
             </div>
             {this.state.started &&
                 <AudioVisualiser
