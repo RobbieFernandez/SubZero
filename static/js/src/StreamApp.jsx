@@ -5,34 +5,51 @@ import ReactDOM from 'react-dom'
 class StreamApp extends React.Component {
     constructor(props) {
         super(props);
-        this.audioContext = new AudioContext();
-        this.state = {"playing": false};
-        this.audioContext.suspend()
+        this.state = {"playing": false, "started": false};
     }
 
-    toggleAudio() {
+    toggleAudio(audioContext) {
         let shouldPlay = !this.state.playing;
         this.setState({"playing": shouldPlay});
+
         if (shouldPlay) {
-            this.audioContext.resume()
+            audioContext.resume();
         } else {
-            this.audioContext.suspend()
+            audioContext.suspend();
         }
+    }
+
+    handlePlayClick() {
+        let audioContext = this.state.started ?
+            this.state.audioContext :
+            new AudioContext();
+
+        if (!this.state.started) {
+            this.setState({
+                "audioContext": audioContext,
+                "started": true
+            });
+        }
+
+        this.toggleAudio(audioContext);
     }
 
     render() {
         return <div>
-            <button onClick={this.toggleAudio.bind(this)}>
-                {this.state.playing? "Pause" : "Start"}
-            </button>
-            <AudioVisualiser
-                audioContext={this.audioContext}
-                audioStreamUrl={this.props.audioStreamUrl}
-                numBars={100}
-                barGap={2}
-                barColour={"#9933ff"}
-                autoPlay={true}
-            />
+            <div className="playButtonContainer">
+                <button className="playButton" onClick={this.handlePlayClick.bind(this)}>
+                    {this.state.playing? "Pause" : "Start"}
+                </button>
+            </div>
+            {this.state.started &&
+                <AudioVisualiser
+                    audioContext={this.state.audioContext}
+                    audioStreamUrl={this.props.audioStreamUrl}
+                    numBars={100}
+                    barGap={2}
+                    barColour={"#9933ff"}
+                />
+            }
         </div>
     }
 }

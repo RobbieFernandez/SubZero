@@ -14,9 +14,7 @@ export class AudioVisualiser extends React.Component {
 
         let barWidth = canvas.width / this.props.numBars - this.props.barGap;
 
-        // Freq will be a uint between 0 and 255
-        // Divide by 265 instead of 255 so we never hit the top of the canvas
-        let getBarHeight = freq => (freq / 265) * canvas.height;
+        let getBarHeight = freq => (freq / 255) * canvas.height;
 
         for (var i = 0; i < this.props.numBars; i++) {
             let bar_x = i * (barWidth + this.props.barGap);
@@ -63,16 +61,16 @@ export class AudioVisualiser extends React.Component {
     render() {
         return <div>
             <audio
-                autoPlay={this.props.autoPlay}
+                autoPlay={true}
                 crossOrigin='anonymous'
                 ref={'audio'}
                 src={this.props.audioStreamUrl}
             ></audio>
             <canvas
+                className="visualiserCanvas"
                 ref={"visualiserCanvas"}
                 width={this.getCanvasWidth()}
                 height={this.getCanvasHeight()}
-                onResize={() => {console.log("Resize")}}
             ></canvas>
         </div>
     }
