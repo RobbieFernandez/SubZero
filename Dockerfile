@@ -27,11 +27,6 @@ RUN pip3 install uwsgi
 RUN rm /etc/nginx/conf.d/default.conf
 COPY deploy/nginx.conf /etc/nginx/conf.d/streamer.conf
 
-# Create streamer user
-RUN useradd -m -d /home/streamer -G nginx,sudo streamer && \
-    chown -R streamer /home/streamer && \
-    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
 WORKDIR /usr/share/nginx
 
 # Copy the source files
