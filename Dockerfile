@@ -45,7 +45,7 @@ RUN . subzero/vp/bin/activate && \
     pip install -r subzero/requirements.txt
 
 # Build the JS bundle
-RUN cd subzero/static/js && npm start
+RUN cd subzero/static/js && npm install && npm start
 
 # Collect the static files
 RUN . subzero/vp/bin/activate && \
