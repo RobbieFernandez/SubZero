@@ -23,10 +23,6 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
 RUN pip3 install wheel
 RUN pip3 install uwsgi
 
-# Configure nginx
-RUN rm /etc/nginx/conf.d/default.conf
-COPY deploy/nginx.conf /etc/nginx/conf.d/streamer.conf
-
 WORKDIR /usr/share/nginx
 
 # Copy the source files
@@ -50,5 +46,9 @@ RUN cd subzero/static/js && npm install && npm start
 # Collect the static files
 RUN . subzero/vp/bin/activate && \
     subzero/manage.py collectstatic --noinput
+
+# Configure nginx
+RUN rm /etc/nginx/conf.d/default.conf
+COPY deploy/nginx.conf /etc/nginx/conf.d/streamer.conf
 
 ENTRYPOINT ["supervisord", "-c", "subzero/deploy/supervisord.conf"]
