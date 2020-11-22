@@ -27,9 +27,7 @@ WORKDIR /usr/share/nginx
 
 # Copy the source files
 RUN mkdir subzero && chown -R nginx subzero
-COPY --chown=nginx static subzero/static/
 COPY --chown=nginx subzero subzero/subzero/
-COPY --chown=nginx deploy subzero/deploy/
 COPY --chown=nginx manage.py subzero/manage.py
 COPY --chown=nginx requirements.txt subzero/requirements.txt
 
@@ -41,11 +39,15 @@ RUN . subzero/vp/bin/activate && \
     pip install -r subzero/requirements.txt
 
 # Build the JS bundle
+COPY --chown=nginx static subzero/static/
 RUN cd subzero/static/js && npm install && npm start
 
 # Collect the static files
 RUN . subzero/vp/bin/activate && \
     subzero/manage.py collectstatic --noinput
+
+# Copy deploy files
+COPY --chown=nginx deploy subzero/deploy/
 
 # Configure nginx
 RUN rm /etc/nginx/conf.d/default.conf
